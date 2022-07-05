@@ -1,0 +1,20 @@
+import pandas as pd
+import numpy as np
+form1 = pd.read_excel("Balmaitri.xlsx" , sheet_name="family_member_repeat")
+#first count the values
+cnt1 = form1.groupby(["ward","Gender"])["Gender"].count().rename("Count")
+cnt1.to_excel("Profile.xlsx" , sheet_name="HH Gender")
+form2 = pd.read_excel("Profile.xlsx")
+form2["Total"] = form2.groupby("ward").Count.transform('sum')
+form2.to_excel("Profile1.xlsx")
+#form1["Sum_is"] = form1.groupby("ward").Total.transform('sum')
+#print(form1)
+#form1["total"] = form1.groupby("ward").Count.transform("sum")
+#total=form1.merge("cnt")
+#cnt["Total"]=cnt["Name"].sum()
+#form2 = pd.read_excel("Profile.xlsx" , sheet_name="HH Gender")
+#sum= form2.groupby(["ward","Gender"],as_index=False).Count.sum()
+#sum.to_excel("Profile1.xlsx" , sheet_name="HH Gender Total")
+#form2 = pd.read_excel("Profile.xlsx")
+#sums = form2.groupby("ward")["Count"].sum().rename("Total")
+#print(sums)
